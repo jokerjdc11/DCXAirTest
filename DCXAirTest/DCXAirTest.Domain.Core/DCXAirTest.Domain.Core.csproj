@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DCXAirTest.Domain.Interface\DCXAirTest.Domain.Interface.csproj" />
+    <ProjectReference Include="..\DCXAirTest.Domain.Repository\DCXAirTest.Domain.Repository.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DCXAirTest.Common\DCXAirTest.Common.csproj" />
+    <ProjectReference Include="..\DCXAirTest.Domain.Entity\DCXAirTest.Domain.Entity.csproj" />
+  </ItemGroup>
+
 </Project>
