@@ -22,11 +22,15 @@
             //Database
             services.AddSingleton<IConnectionFactory, ConnectionFactory>();
 
-
             //inyeccion de Seeders 
             services.AddSingleton<ISeederApplication, SeederApplication>();
             services.AddSingleton<ISeederDomain, SeederDomain>();
             services.AddSingleton<ISeederRepository, SeederRepository>();
+
+            //inyeccion de Flights 
+            services.AddSingleton <IFlightApplication, FlightApplication>();
+            services.AddSingleton<IFlightDomain, FlightDomain>();
+            services.AddSingleton<IFlightRepository, FlightRepository>();
 
             return services;
         }

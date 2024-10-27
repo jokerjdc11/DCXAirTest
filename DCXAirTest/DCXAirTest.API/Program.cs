@@ -47,6 +47,7 @@ app.UseCors("policeApi");
 //app.UseAuthorization();
 
 // Controllers extension methods and endPoints
+app.AddInfoEndpoints();
 app.AddFlightEndpoints();
 app.AddSeederEndpoints();
 

@@ -2,14 +2,13 @@
 {
     using DCXAirTest.Application.Contracts;
     using DCXAirTest.Application.DTO;
-    using DCXAirTest.Application.Validators;
     using Microsoft.AspNetCore.Mvc;
 
     public static class SeederEndpoint
     {
         public static void AddSeederEndpoints(this IEndpointRouteBuilder app)
         {
-            var journeyFilterValidator = new FlightFilterValidator();
+
             #region Endpoints
 
             //Posible implementacion de CQRS por tiempo no implementado

@@ -1,32 +1,34 @@
 ﻿namespace DCXAirTest.API.Endpoints
 {
+    using DCXAirTest.Application.Contracts;
+    using DCXAirTest.Application.Validators;
+
     public static class FlightEndpoint
     {
-
         public static void AddFlightEndpoints(this IEndpointRouteBuilder app)
         {
-            app.MapGet("/info", () => "Page Information!");
+            var journeyFilterValidator = new FlightFilterValidator();
 
-            //app.MapGet("/flight/{application}", async (IFlightApplication _application, string origin) =>
-            //{
-            //    var response = await _application.GetFligthByOriginAsync(origin);
+            #region Endpoints
 
-            //    if (response.SuccessfulResult) return Results.Ok(response);
-            //    else return Results.BadRequest(response.Message);
+            app.MapGet("/Flights/oneWay", async (IFlightApplication _application, string origin, string destination, string currency) =>
+            {
 
-            //}).RequireAuthorization();
+                var response = await _application.GetJourneysOneWayAsync(origin, destination, currency);
 
-            //app.MapPost("api/v{apiVersion:apiVersion}/journey/insertjourneys", async (IFlightApplication _application, List<JourneyDTO> listjourney) =>
-            //{
+                if (response.SuccessfulResult) return Results.Ok(response);
+                else return Results.BadRequest(response.Message);
+            });
 
-            //    var response = await _application.GetByApplicationAsync(listjourney);
+            app.MapGet("/Flights/roundTrip", async (IFlightApplication _application, string origin, string destination, string currency) =>
+            {
 
-            //    if (response.SuccessfulResult) return Results.Ok(response);
-            //    else return Results.BadRequest(response.Message);
+                var response = await _application.GetJourneysRoundTripAsync(origin, destination, currency);
 
-            //})
-            // .WithApiVersionSet(apiVersionSet)
-            // .MapToApiVersion(new ApiVersion(1));
+                if (response.SuccessfulResult) return Results.Ok(response);
+                else return Results.BadRequest(response.Message);
+            });
+            #endregion
         }
     }
 }

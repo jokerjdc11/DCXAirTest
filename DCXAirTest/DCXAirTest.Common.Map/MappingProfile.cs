@@ -11,7 +11,7 @@
         {
             CreateMap<Flight, FlightDTO>().ReverseMap();
             CreateMap<Transport, TransportDTO>().ReverseMap();
-            CreateMap<JourneyVO, FlightDTO>().ReverseMap();
+            CreateMap<Journey, JourneyDTO>().ReverseMap();
         }
     }
 }

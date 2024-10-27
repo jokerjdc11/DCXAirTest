@@ -24,20 +24,18 @@
             _appLogger = appLogger;
         }
 
-        public async Task<ResponseOperation<IEnumerable<int>>> GetFligthByOriginAsync(string origin)
+        public async Task<ResponseOperation<List<JourneyDTO>>> GetJourneysOneWayAsync(string origin, string destination, string currency)
         {
-            _appLogger.LogInformation("extrayendo una lista de vuelos desde la base de datos");
+            _appLogger.LogInformation("Consultando el camino de ida con escalas");
 
-            var response = new ResponseOperation<IEnumerable<int>>();
+            var response = new ResponseOperation<List<JourneyDTO>>();
 
             try
             {
                 //Mapeo de entidad
-                //var listJourneyVO = _mapper.Map<string>(listjourney);
+                var idRespuesta = await _flightDomain.GetJourneysOneWayAsync(origin, destination, currency);
 
-                var idRespuesta = await _flightDomain.GetFligthByOriginAsync(origin);
-
-                var idResponse = _mapper.Map<IEnumerable<int>>(idRespuesta);
+                var idResponse = _mapper.Map<List<JourneyDTO>>(idRespuesta);
 
                 response.Data = idResponse;
                 response.Message = Constants.MESSAGE_OK;
@@ -47,7 +45,33 @@
             {
                 response.Message = ex.Message;
                 response.SuccessfulResult = Constants.ERROR;
-                _appLogger.LogError(ex, "Error en el metodo GetFligthByOriginAsync()");
+                _appLogger.LogError(ex, "Error en el metodo GetJourneysOneWayAsync()");
+            }
+            return response;
+        }
+
+        public async Task<ResponseOperation<List<JourneyDTO>>> GetJourneysRoundTripAsync(string origin, string destination, string currency)
+        {
+            _appLogger.LogInformation("Consultando el camino de ida con escalas");
+
+            var response = new ResponseOperation<List<JourneyDTO>>();
+
+            try
+            {
+                //Mapeo de entidad
+                var idRespuesta = await _flightDomain.GetJourneysRoundTripAsync(origin, destination, currency);
+
+                var idResponse = _mapper.Map<List<JourneyDTO>>(idRespuesta);
+
+                response.Data = idResponse;
+                response.Message = Constants.MESSAGE_OK;
+                response.SuccessfulResult = Constants.OK;
+            }
+            catch (Exception ex)
+            {
+                response.Message = ex.Message;
+                response.SuccessfulResult = Constants.ERROR;
+                _appLogger.LogError(ex, "Error en el metodo GetJourneysOneWayAsync()");
             }
             return response;
         }
