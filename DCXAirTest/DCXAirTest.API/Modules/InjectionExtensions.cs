@@ -22,6 +22,7 @@
             //Database
             services.AddSingleton<IConnectionFactory, ConnectionFactory>();
 
+
             //inyeccion de Seeders 
             services.AddSingleton<ISeederApplication, SeederApplication>();
             services.AddSingleton<ISeederDomain, SeederDomain>();

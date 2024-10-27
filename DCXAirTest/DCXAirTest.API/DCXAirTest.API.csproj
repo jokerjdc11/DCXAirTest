@@ -9,6 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Data\markets.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Asp.Versioning.Http" Version="8.1.0" />
     <PackageReference Include="Asp.Versioning.Mvc" Version="8.1.0" />
     <PackageReference Include="Asp.Versioning.Mvc.ApiExplorer" Version="8.1.0" />
@@ -26,6 +30,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Data\markets.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\DCXAirTest.Application.Contracts\DCXAirTest.Application.Contracts.csproj" />
     <ProjectReference Include="..\DCXAirTest.Application.Implementations\DCXAirTest.Application.Implementations.csproj" />
     <ProjectReference Include="..\DCXAirTest.Application.Validators\DCXAirTest.Application.Validators.csproj" />
@@ -33,6 +43,7 @@
     <ProjectReference Include="..\DCXAirTest.Common.Map\DCXAirTest.Common.Map.csproj" />
     <ProjectReference Include="..\DCXAirTest.Common\DCXAirTest.Common.csproj" />
     <ProjectReference Include="..\DCXAirTest.Domain.Core\DCXAirTest.Domain.Core.csproj" />
+    <ProjectReference Include="..\DCXAirTest.Infraestructure.Data\DCXAirTest.Infraestructure.Data.csproj" />
     <ProjectReference Include="..\DCXAirTest.Infraestructure.Repository\DCXAirTest.Infraestructure.Repository.csproj" />
   </ItemGroup>
 

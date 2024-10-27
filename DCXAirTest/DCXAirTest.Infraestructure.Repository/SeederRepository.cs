@@ -5,7 +5,6 @@
     using DCXAirTest.Domain.Entity.ValueObject;
     using DCXAirTest.Domain.Repository;
     using System.Collections.Generic;
-    using System.Data;
 
     public class SeederRepository : ISeederRepository
     {
@@ -25,6 +24,18 @@
                 {
                     try
                     {
+                        // Limpiamos la tabla antes de ingresar
+                        var sqliteInitialite = @"DELETE FROM Flight; 
+                                                DELETE FROM sqlite_sequence WHERE name=@Flight;
+
+                                                DELETE FROM Transport; 
+                                                DELETE FROM sqlite_sequence WHERE name=@Transport;";
+                        var delParameters = new DynamicParameters();
+                        delParameters.Add("@Flight", "Fligth");
+                        delParameters.Add("@Transport", "Transport");
+
+                        await conexion.ExecuteScalarAsync<int>(sqliteInitialite, delParameters, transaction);
+
                         foreach (var flight in listjourney)
                         {
                             // Inserta en la tabla Transport

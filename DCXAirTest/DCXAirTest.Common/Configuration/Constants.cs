@@ -11,5 +11,7 @@
         public const string FLIGHT_CONNECTION_SQLITE = "FLIGHT_CONNECTION_SQLITE";
         public const string FLIGHT_CONNECTION = "FLIGHT_CONNECTION";
         public const string ACTIVE_STATUS = "A";
+        public const string MARKET_FOLDER = "Data";
+        public const string MARKET_JSON = "markets.json";
     }
 }

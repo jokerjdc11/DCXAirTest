@@ -4,7 +4,8 @@ using DCXAirTest.API.Endpoints;
 using DCXAirTest.API.Modules;
 using DCXAirTest.API.OpenApi;
 using DCXAirTest.Common;
-using SQLitePCL; // Asegúrate de incluir este using
+using DCXAirTest.Infraestructure.Data;
+using SQLitePCL;
 
 var builder = WebApplication.CreateBuilder(args);
 // api version
@@ -17,6 +18,7 @@ SQLitePCL.Batteries.Init();
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 builder.Services.AddFeature(builder.Configuration);
 builder.Services.AddInjection(builder.Configuration);
+builder.Services.AddTransient<DataSeeder>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddAuthentication(builder.Configuration);
 builder.Services.AddSwaggerExtension();
@@ -32,6 +34,13 @@ builder.Services.AddLogging(logging =>
 });
 
 var app = builder.Build();
+
+// Run the seeder at application startup
+using (var scope = app.Services.CreateScope())
+{
+    var seeder = scope.ServiceProvider.GetRequiredService<DataSeeder>();
+    await seeder.SeedDataAsync(); // Llama al método de seed
+}
 
 app.UseAuthentication();
 app.UseCors("policeApi");
