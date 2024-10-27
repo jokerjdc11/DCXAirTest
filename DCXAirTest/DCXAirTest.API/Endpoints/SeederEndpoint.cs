@@ -1,7 +1,5 @@
 ﻿namespace DCXAirTest.API.Endpoints
 {
-    using Asp.Versioning.Builder;
-    using Asp.Versioning.Conventions;
     using DCXAirTest.Application.Contracts;
     using DCXAirTest.Application.DTO;
     using DCXAirTest.Application.Validators;
@@ -14,7 +12,7 @@
             var journeyFilterValidator = new FlightFilterValidator();
             #region Endpoints
 
-
+            //Posible implementacion de CQRS por tiempo no implementado
             app.MapPost("/seedFlights", async (ISeederApplication _application, [FromBody] List<FlightDTO> listFlights) =>
             {
                 if (listFlights == null || !listFlights.Any())
@@ -25,7 +23,6 @@
 
                 if (response.SuccessfulResult) return Results.Ok(response);
                 else return Results.BadRequest(response.Message);
-
             });
             #endregion
         }
