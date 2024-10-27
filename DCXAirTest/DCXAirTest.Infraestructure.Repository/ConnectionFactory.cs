@@ -16,20 +16,22 @@
             _configuration = configuration;
         }
 
-
         public IDbConnection GetConnection
         {
             get
             {
-                // Configura la conexión SQLite en memoria
-                var sqlConnection = new SqliteConnection();
-
-                sqlConnection.ConnectionString = _configuration.GetConnectionString(Constants.FLIGHT_CONNECTION_MEMORY);
-                sqlConnection.Open(); // Abre la conexión inmediatamente
-                // Devuelve la conexión en memoria
-                return sqlConnection;
+                try
+                {
+                    var sqlConnection = new SqliteConnection(_configuration.GetConnectionString(Constants.FLIGHT_CONNECTION_SQLITE));
+                    sqlConnection.Open();
+                    return sqlConnection;
+                }
+                catch (Exception ex)
+                {
+                    // Maneja el error de conexión, puedes registrar el error o lanzar una excepción personalizada
+                    throw new Exception("Error al abrir la conexión a la base de datos: " + ex.Message);
+                }
             }
-
         }
 
         // Conexcion a SQL para pruebas

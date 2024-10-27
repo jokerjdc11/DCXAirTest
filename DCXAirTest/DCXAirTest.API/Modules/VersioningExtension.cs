@@ -1,7 +1,7 @@
 ﻿namespace DCXAirTest.API.Modules
 {
-    using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Mvc.Versioning;
+    using Asp.Versioning;
+
 
     public static class VersioningExtension
     {
@@ -18,14 +18,9 @@
                 opt.ReportApiVersions = true;
                 opt.AssumeDefaultVersionWhenUnspecified = true;
 
-                opt.ApiVersionReader =
-                ApiVersionReader.Combine(
-                    new HeaderApiVersionReader("Api-Version"),
-                    new QueryStringApiVersionReader("Query-String-Version"));
-
-            }).AddVersionedApiExplorer(setup =>
+            }).AddApiExplorer(setup =>
             {
-                setup.GroupNameFormat = "'v'VVV";
+                setup.GroupNameFormat = "'v'V";
                 setup.SubstituteApiVersionInUrl = true;
             });
 

@@ -1,9 +1,4 @@
-﻿using Asp.Versioning.Builder;
-using DCXAirTest.Application.Contracts;
-using DCXAirTest.Application.DTO;
-using DCXAirTest.Domain.Entity.ValueObject;
-
-namespace DCXAirTest.API.Endpoints
+﻿namespace DCXAirTest.API.Endpoints
 {
     public static class FlightEndpoint
     {

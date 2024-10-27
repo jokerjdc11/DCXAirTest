@@ -10,4 +10,9 @@
     <PackageReference Include="AutoMapper" Version="13.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DCXAirTest.Application.DTO\DCXAirTest.Application.DTO.csproj" />
+    <ProjectReference Include="..\DCXAirTest.Domain.Entity\DCXAirTest.Domain.Entity.csproj" />
+  </ItemGroup>
+
 </Project>

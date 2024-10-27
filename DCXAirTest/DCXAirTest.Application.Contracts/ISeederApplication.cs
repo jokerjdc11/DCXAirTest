@@ -7,7 +7,7 @@
     { 
 
         #region Metodo Asincronos
-        Task<ResponseOperation<IEnumerable<int>>> setNewFligthsAsync(List<FlightDTO> flights);
+        Task<ResponseOperation<IEnumerable<int>>> setNewFligthsAsync(List<FlightDTO> listFlights);
         #endregion
     }
 }
