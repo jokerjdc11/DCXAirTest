@@ -5,5 +5,5 @@ export const routes: Routes = [
     { path: '', component:  FlightComponent},
     { path: 'flights', component: FlightComponent },
     { path: 'home/flights', component: FlightComponent },
-    { path: 'home', component: FlightComponent },
+    { path: 'home', component: FlightComponent }
 ];

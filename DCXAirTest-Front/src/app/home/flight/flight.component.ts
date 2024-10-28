@@ -48,15 +48,15 @@ export class FlightComponent implements OnInit {
     }
     else
     {
-      this.fService.getOneWayFlights(this.selectedOrigin,this.selectedDestination,this.selectedCurrency).subscribe(data => {
-                  this.allJourneys = data as Journey[]
-                  console.log(this.allJourneys);
-                });
+      // this.fService.getOneWayFlights(this.selectedOrigin,this.selectedDestination,this.selectedCurrency).subscribe(data => {
+      //             this.allJourneys = data as Journey[]
+      //             console.log(this.allJourneys);
+      //           });
       if (this.selectedTrip === "Round Trip"){
-        this.fService.getOneWayFlights(this.selectedDestination,this.selectedOrigin,this.selectedCurrency).subscribe(data => {
-          this.allJourneysBack = data as Journey[]
-          console.log(this.allJourneysBack);
-        });
+        // this.fService.getOneWayFlights(this.selectedDestination,this.selectedOrigin,this.selectedCurrency).subscribe(data => {
+        //   this.allJourneysBack = data as Journey[]
+        //   console.log(this.allJourneysBack);
+        // });
         console.log("round");
       }
       else{

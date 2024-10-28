@@ -3,9 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module'; 
 import { AppComponent } from './app.component';
 import { HomeModule } from './home/home.module';
-import { provideHttpClient, withFetch } from '@angular/common/http';
+import { HttpClientModule} from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgSelectModule } from '@ng-select/ng-select';
 import { CommonModule } from '@angular/common';
 
 @NgModule({
@@ -18,14 +17,8 @@ import { CommonModule } from '@angular/common';
     BrowserModule,
     AppRoutingModule,
     HomeModule,
-    NgSelectModule,
     ReactiveFormsModule,
-    
-  ],
-  providers: [
-    provideHttpClient(
-      withFetch()
-    ) 
+    HttpClientModule
   ],
   bootstrap: [AppComponent]
 })
