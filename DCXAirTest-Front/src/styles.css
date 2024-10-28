@@ -1,1 +1,11 @@
-@import 'bootstrap/dist/css/bootstrap.min.css';
+@font-face {
+    font-family: "DM Sans";
+    src: url(../src/assets/fonts/DMSans/DMSans-ExtraLight.ttf) format("truetype");
+} 
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+}
