@@ -3,10 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { FlightComponent } from './home/flight/flight.component';
 
 const routes: Routes = [
-  { path: '', component:  FlightComponent},
-  { path: 'flights', component: FlightComponent },
-  { path: 'home/flights', component: FlightComponent },
-  { path: 'home', component: FlightComponent },
+  {
+    path: 'home',
+    loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
+  },
+  { path: '', component: FlightComponent },
+
 ];
 
 @NgModule({

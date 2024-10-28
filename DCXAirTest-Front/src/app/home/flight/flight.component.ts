@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FlightService } from '../../services/fligth.service';
+import { City } from '../../interfaces/City';
+import { Journey } from '../../interfaces/Journey';
+import { Coin } from '../../interfaces/Coin';
+import { Flight } from '../../interfaces/Flight';
+import { FlghtService } from 'src/app/services/flight.service';
 
 @Component({
   selector: 'app-flight',
@@ -8,85 +12,76 @@ import { FlightService } from '../../services/fligth.service';
 })
 export class FlightComponent implements OnInit {
   
-  constructor(private fService: FlightService) {}
-
-  ngOnInit(): void {
-    
-  }
-
-  selectedOrigin: any = "";
-  selectedDestination: any = "";
+  selectedOri: any = "";
+  selectedDes: any = "";
   selectedCurrency: any = "";
   selectedTrip: any = "";
   enabledButton: boolean = false;
 
-  allJourneys: Journey[] = [];
+  constructor(private fService: FlghtService) {}
+
   allJourneysBack: Journey[] = [];
 
-  allCurrency:Coin[] = [{
-    Name: "USD",
-    Description: "Dolar"
-  },{
-    Name: "COP",
-    Description: "Peso Colombiano"
-  },
-  {
-    Name: "MXN",
-    Description: "Pesos Mexicanos"
-  }];
+  ngOnInit(): void { }
+
+  allCurrency: Coin[] = [
+    { Name: "USD", Description: "Dolar"},
+    { Name: "COP", Description: "Peso Colombiano"},
+    { Name: "MXN", Description: "Pesos Mexicanos"}
+  ];
+
+  allCities: City[] = [
+    {
+    Name: "MZL",
+    Description: "Manizales",
+    },
+    {
+    Name: "PEI",
+    Description: "Pereira",
+    },
+    {
+    Name: "JFK",
+    Description: "Jhon F.Kenedy",
+    },
+    {
+    Name: "BCN",
+    Description: "Barcelona",
+    },
+    {
+    Name: "MAD",
+    Description: "Madrid",
+    }
+  ]
 
   onChange() {
 
   }
 
   addClick() {
-    console.log("Form Submitted")
-
-    if (!this.selectedTrip || !this.selectedOrigin || !this.selectedCurrency || !this.selectedDestination)
+    if (!this.selectedTrip || !this.selectedOri || !this.selectedCurrency || !this.selectedDes)
     {
-        alert("There are missed data")
+      alert("Por favor, completa todos los campos antes de buscar vuelos.");
+      console.log(this.selectedTrip)
+      return;
     }
     else
     {
-      // this.fService.getOneWayFlights(this.selectedOrigin,this.selectedDestination,this.selectedCurrency).subscribe(data => {
-      //             this.allJourneys = data as Journey[]
-      //             console.log(this.allJourneys);
-      //           });
-      if (this.selectedTrip === "Round Trip"){
-        // this.fService.getOneWayFlights(this.selectedDestination,this.selectedOrigin,this.selectedCurrency).subscribe(data => {
-        //   this.allJourneysBack = data as Journey[]
-        //   console.log(this.allJourneysBack);
-        // });
-        console.log("round");
+      if (this.selectedTrip === "oneway"){
+        this.fService.getOneWayFlights(this.selectedOri,this.selectedDes,this.selectedCurrency).subscribe(data => {
+                    this.allJourneysBack = data.data;
+                    console.log(this.allJourneysBack);
+                  });
+      }
+      if (this.selectedTrip === "roundtrip"){
+        this.fService.getOneWayFlights(this.selectedOri,this.selectedDes,this.selectedCurrency).subscribe(data => {
+          this.allJourneysBack = data as Journey[]
+          console.log(this.allJourneysBack);
+        });
       }
       else{
-        console.log("Hola");
         this.allJourneysBack = [];
       }
     }
   }
-}
 
-interface Coin {
-  Name: string;
-  Description: string;
-}
-
-interface Journey {
-  origin: string;
-  destination: string;
-  coin: string;
-  price: number;
-  flights: Flight [];
-}
-
-interface Flight {
-  coin: string;
-  destination: string;
-  id: number;
-  nameTransport: string;
-  origin: string;
-  price: number;
-  priceCoin: number;
-  transportId: number;
 }
