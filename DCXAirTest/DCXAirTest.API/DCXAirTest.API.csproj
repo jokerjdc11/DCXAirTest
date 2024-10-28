@@ -4,10 +4,47 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+	<!-- Especificar la ruta del archivo XML de documentación -->
+	<DocumentationFile>bin\Debug\net8.0\DCXAirTest.API.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+    <Content Remove="Data\markets.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Asp.Versioning.Http" Version="8.1.0" />
+    <PackageReference Include="Asp.Versioning.Mvc" Version="8.1.0" />
+    <PackageReference Include="Asp.Versioning.Mvc.ApiExplorer" Version="8.1.0" />
+    <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.10" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="5.1.0" />
+    <PackageReference Include="Serilog.Extensions.Logging.File" Version="3.0.0" />
+    <PackageReference Include="SQLitePCLRaw.bundle_green" Version="2.1.10" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.9.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Logs\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Data\markets.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DCXAirTest.Application.Contracts\DCXAirTest.Application.Contracts.csproj" />
+    <ProjectReference Include="..\DCXAirTest.Application.Implementations\DCXAirTest.Application.Implementations.csproj" />
+    <ProjectReference Include="..\DCXAirTest.Application.Validators\DCXAirTest.Application.Validators.csproj" />
+    <ProjectReference Include="..\DCXAirTest.Common.Logging\DCXAirTest.Common.Logging.csproj" />
+    <ProjectReference Include="..\DCXAirTest.Common.Map\DCXAirTest.Common.Map.csproj" />
+    <ProjectReference Include="..\DCXAirTest.Common\DCXAirTest.Common.csproj" />
+    <ProjectReference Include="..\DCXAirTest.Domain.Core\DCXAirTest.Domain.Core.csproj" />
+    <ProjectReference Include="..\DCXAirTest.Infraestructure.Data\DCXAirTest.Infraestructure.Data.csproj" />
+    <ProjectReference Include="..\DCXAirTest.Infraestructure.Repository\DCXAirTest.Infraestructure.Repository.csproj" />
   </ItemGroup>
 
 </Project>
